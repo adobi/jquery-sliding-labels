@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="eng">
 <head>
-	<title>jQuery cross domain ajax with YQL</title>
+	<title>jQuery sliding labels</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
@@ -47,7 +47,13 @@
 		.hidden {
 			display:none;
 		}
-
+		dt, dd {border:0px solid #ccc;}
+		dt{
+			display:block;padding:5px;margin-left:40px;
+		}
+		dd {
+			 
+		}
 
 	</style>	
 </head>
@@ -56,30 +62,73 @@
 	<h1>jQuery sliding labels</h1>
 	
 	<fieldset>
-		<form action="">
+		<form action="" id = "form-p">
 			<p>
 				<label for="first_name">First name</label>
-				<input type="text" name="first_name" id="" size="40"/>
+				<input type="text" name="first_name" id="first_name" size="40"/>
 			</p>
 			<p>
 				<label for="last_name">Last name</label>
-				<input type="text" name="last_name" id="" size="40"/>
+				<input type="text" name="last_name" id="last_name" size="40"/>
 			</p>
 			<p>
 				<label for="email">Email</label>
-				<input type="text" name="email" id="" size="40"/>
+				<input type="text" name="email" id="email" size="40"/>
 			</p>
 			<p>
 				<label for="homepage">Homepage</label>
-				<input type="text" name=homepage id="" size="40"/>
+				<input type="text" name=homepage id="homepage" size="40"/>
 			</p>
+		</form>
+	</fieldset>
+
+	<fieldset>
+		<form action="" id = "form-table">
+			<table border="0" cellspacing="5" cellpadding="0">
+				<tr>
+					<td><label for="first_name">First name</label></td>
+					<td><input type="text" name="first_name" id="first_name" size="40"/></td>
+				</tr>
+				<tr>
+					<td><label for="last_name">Last name</label></td>
+					<td><input type="text" name="last_name" id="last_name" size="40"/></td>
+				</tr>
+				<tr>
+					<td><label for="email">Email</label></td>
+					<td><input type="text" name="email" id="email" size="40"/></td>
+				</tr>
+				<tr>
+					<td><label for="homepage">Homepage</label></td>
+					<td><input type="text" name=homepage id="homepage" size="40"/></td>
+				</tr>
+								
+			</table>
+		</form>
+	</fieldset>
+	
+	<fieldset>
+		<form action="" id = "form-list">
+			
+			<dl>
+				<dt><label for="first_name">First name</label></dt>
+				<dd><input type="text" name="first_name" id="" size="40"/></dd>
+				<dt><label for="last_name">Last name</label></dt>
+				<dd><input type="text" name="last_name" id="" size="40"/></dd>
+				<dt><label for="email">Email</label></dt>
+				<dd><input type="text" name="email" id="" size="40"/></dd>
+				<dt><label for="homepage">Homepage</label></dt>
+				<dd><input type="text" name="homepage" id="" size="40"/></dd>
+			</dl>
+			
 		</form>
 	</fieldset>
 
 	
 	<script type="text/javascript" charset="utf-8">
 		$(function() {
-			$('form').slidingLabels();
+			$('#form-p, #form-table').slidingLabels({direction: 'horizontal'});
+			
+			$('#form-list').slidingLabels({direction: 'vertical'});
 		});
 	</script>
 	

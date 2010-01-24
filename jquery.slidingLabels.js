@@ -7,7 +7,8 @@
 		var cssIn = cssOut = {
 			position: 'relative'
 		};
-				
+		
+		var adjustLeft = 10, adjustTop = 13;
 		
 		var current, prev = 0;
 		
@@ -15,16 +16,17 @@
 			
 			var self = $(this);
 			var labels = self.find('label');
+			
+			cssIn.opacity = 0.6;
 
 			labels.each(function(i, label) {
 				
 				switch(options.direction) {
 					case 'vertical':
-					
+						cssIn.top = $(label).height() + adjustTop;
 						break;
 					case 'horizontal':
-						cssIn.left = $(label).width() + 10;
-						cssIn.opacity = 0.6;
+						cssIn.left = $(label).width() + adjustLeft;
 						break;
 					default:
 				}
@@ -34,40 +36,54 @@
 			
 			self.find('input[type=text]').each(function(i, input) {
 				
-				$(input).focusin(function() {
-					switch(options.direction) {
-						case 'horizontal':
-							
-							cssOut.left = 0;
-							cssOut.opacity = 1;
-							break;
-						case 'vertical':
+				$(input)
+					.focusin(function() {
 						
-							break;
-						default:
-					}
-					$(labels[i]).animate(cssOut);
-					current = i;
-					//console.log('focusin '+current);
-				})
-				.focusout(function() {
-					switch(options.direction) {
-						case 'horizontal':
-	
-							if(!jQuery.trim($(input).val())) {
-								
-								cssIn.left = $(labels[current]).width() + 10;
-								cssIn.opacity = 0.6;
-							}
-							break;
-						case 'vertical':
+						cssOut.opacity = 1;
 						
-							break;
-						default:
-					}
-					$(labels[current]).animate(cssIn);
-					//console.log('focusout '+current);
-				});
+						switch(options.direction) {
+							case 'horizontal':
+								cssOut.left = 0;
+								cssOut.top = 0;
+								break;
+							case 'vertical':
+								cssOut.top = 0;
+								break;
+							default:
+						}
+						
+						$(labels[i]).animate(cssOut);
+						current = i;
+					})
+					.focusout(function() {
+						
+						switch(options.direction) {
+							case 'horizontal':
+		
+								if(!jQuery.trim($(input).val())) {
+									cssIn.opacity = 0.6;
+									cssIn.left = $(labels[current]).width() + adjustLeft;
+								}
+								else {
+									cssIn.left = 0;
+									cssIn.opacity = 1;
+								}
+								break;
+							case 'vertical':
+								if(!jQuery.trim($(input).val())) {
+									cssIn.opacity = 0.6;
+									cssIn.top = $(labels[current]).height() + adjustTop;
+								}
+								else {
+									cssIn.top = 0;
+									cssIn.opacity = 1;
+								}
+								break;
+							default:
+						}
+						
+						$(labels[current]).animate(cssIn);
+					});
 			});
 			
 			
