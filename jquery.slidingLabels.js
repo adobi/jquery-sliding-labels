@@ -53,9 +53,12 @@
 				.focusout(function() {
 					switch(options.direction) {
 						case 'horizontal':
-							
-							cssIn.left = $(labels[current]).width() + 10;
-							cssIn.opacity = 0.6;
+	
+							if(!jQuery.trim($(input).val())) {
+								
+								cssIn.left = $(labels[current]).width() + 10;
+								cssIn.opacity = 0.6;
+							}
 							break;
 						case 'vertical':
 						
