@@ -14,13 +14,7 @@
 			background: #fefefe;
 			font:12px Helvetica, Arial, sans-serif;
 		}
-		
-		.example {
-			border:1px solid #ccc;
-			padding:10px; margin:10px;
-			background: #f5f5f5;
-		}
-		
+
 		a {
 			color: #ff6908; text-decoration:none;font-size:1.2em; padding:3px;
 
@@ -43,6 +37,10 @@
 		input[type=text]:focus {
 			border:1px solid #555;
 		}
+		label {
+			display:inline-block;
+			width:70px;
+		}
 		img {
 			position:relative; left:2px; top:2px;
 		}
@@ -59,15 +57,29 @@
 	
 	<fieldset>
 		<form action="">
-			<label for="external_url">Enter the URL</label>
-			<input type="text" name="external_url" id="" size="60"/>
+			<p>
+				<label for="first_name">First name</label>
+				<input type="text" name="first_name" id="" size="40"/>
+			</p>
+			<p>
+				<label for="last_name">Last name</label>
+				<input type="text" name="last_name" id="" size="40"/>
+			</p>
+			<p>
+				<label for="email">Email</label>
+				<input type="text" name="email" id="" size="40"/>
+			</p>
+			<p>
+				<label for="homepage">Homepage</label>
+				<input type="text" name=homepage id="" size="40"/>
+			</p>
 		</form>
 	</fieldset>
 
 	
 	<script type="text/javascript" charset="utf-8">
 		$(function() {
-			
+			$('form').slidingLabels();
 		});
 	</script>
 	
